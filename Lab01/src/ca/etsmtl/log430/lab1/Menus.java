@@ -48,6 +48,8 @@ public class Menus {
 			System.out.println("3) List projects currently assigned to a resource");
 			System.out.println("4) List resources currently assigned to a project");
 			System.out.println("5) Assign a resource to a project");
+			System.out.println("6) Option 1");
+			System.out.println("7) Option 2");
 			System.out.println("X) Exit");
 			System.out.print("\n\nEnter your choice and press return >> ");
 

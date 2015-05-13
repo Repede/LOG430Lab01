@@ -165,7 +165,7 @@ public class Displays {
 		} // while
 
 	}
-
+	
 	public void displayProjectsPreviouslyAssignedToResource(Resource resource,
 			ProjectList projectList) {
 
@@ -211,6 +211,7 @@ public class Displays {
 		} // while
 
 	}
+
 	/**
 	 * Displays the resources in a resource list. Displays the same information
 	 * that is listed in the displayResource() method listed above.

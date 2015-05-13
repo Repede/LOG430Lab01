@@ -46,7 +46,7 @@ import java.util.Scanner;
  * v1.4, R. Champagne, 2012-May-31 - Various refactorings for new lab.
  * 
  * v1.3, R. Champagne, 2012-Feb-02 - Various refactorings for new lab.
- * 
+ * x`x
  * v1.2, 2011-Feb-02, R. Champagne - Various refactorings, javadoc comments.
  * 
  * v1.1, 2002-May-21, R. Champagne - Adapted for use at ETS.
