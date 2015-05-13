@@ -238,5 +238,53 @@ public class Displays {
 		} // while
 
 	}
+	public void displayRoleAssignedToProjet(Project pr)
+	{
+		//Role
+		int[] countRolesBefore=new int[4];
+		int[] countRolesAfter=new int[4];
+		Resource resource;
+		
+		boolean done = false;
+		while (!done) {
+			resource = pr.getResourcesAssigned().getNextResource();
+			if (resource == null) 
+				done = true;
+			else 
+			{
+				countRolesAfter=this.incrRoleProject(countRolesAfter, resource.getRole());
+			} // if
+		} // while
+		System.out.println("Avant execution");
+		System.out.println("Analyse : "+countRolesBefore[0]);
+		System.out.println("Concepteur : "+countRolesBefore[1]);
+		System.out.println("Programmeur : "+countRolesBefore[2]);
+		System.out.println("Testeur : "+countRolesBefore[3]);
+		System.out.println("\nApres execution");
+		System.out.println("Analyse : "+countRolesAfter[0]);
+		System.out.println("Concepteur : "+countRolesAfter[1]);
+		System.out.println("Programmeur : "+countRolesAfter[2]);
+		System.out.println("Testeur : "+countRolesAfter[3]);
+	}
+	private int[] incrRoleProject(int[] roles,String Role)
+	{
+		switch (Role) {
+		case "ANA":
+			 roles[0]++;
+			break;
+		case "DES":	
+			roles[1]++;
+			break;
+		case "PRG":
+			roles[2]++;
+			break;
+		case "TST":
+			roles[3]++;
+			break;
 
+		}
+		return roles;
+		
+	}
+	
 } // Display
