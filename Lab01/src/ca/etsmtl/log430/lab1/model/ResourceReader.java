@@ -1,4 +1,6 @@
-package ca.etsmtl.log430.lab1;
+package ca.etsmtl.log430.lab1.model;
+
+import ca.etsmtl.log430.lab1.controleur.ResourceList;
 
 /**
  * Reads from the InputFile and instantiates the Resource objects in the system.

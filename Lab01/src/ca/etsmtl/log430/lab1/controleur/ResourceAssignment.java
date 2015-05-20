@@ -1,6 +1,13 @@
-package ca.etsmtl.log430.lab1;
+package ca.etsmtl.log430.lab1.controleur;
 
 import java.util.Scanner;
+
+import ca.etsmtl.log430.lab1.model.Project;
+import ca.etsmtl.log430.lab1.model.ProjectReader;
+import ca.etsmtl.log430.lab1.model.Resource;
+import ca.etsmtl.log430.lab1.model.ResourceReader;
+import ca.etsmtl.log430.lab1.view.Displays;
+import ca.etsmtl.log430.lab1.view.Menus;
 
 /**
  * Main class for assignment 1 for LOG430, Architecture logicielle.

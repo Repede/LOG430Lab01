@@ -1,4 +1,6 @@
-package ca.etsmtl.log430.lab1;
+package ca.etsmtl.log430.lab1.model;
+
+import ca.etsmtl.log430.lab1.controleur.ProjectList;
 
 /**
  * This class will read from the InputFile and instantiate the Project objects
