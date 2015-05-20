@@ -319,9 +319,40 @@ public class Displays {
 		System.out.println("Testeur : "+countRolesAfter[3]);
 	}
 	
-	public boolean isOverloaded(Project project, Resource resource)
+	public boolean isOverloaded(Project project, Resource resource, ProjectList projectList)
 	{
-		//Be cool here
+		//TODO: TIME INTERVALS
+		Project currentProject;
+		Project tempProject;
+		
+		projectList.goToFrontOfList();
+		
+		ProjectList previousProjects = resource.getPreviouslyAssignedProjectList();
+		previousProjects.goToFrontOfList();
+		
+		ProjectList allProjects;
+		allProjects = resource.getProjectsAssigned();
+		
+		
+		
+		while((currentProject = previousProjects.getNextProject()) != null)
+		{
+			while ((tempProject = projectList.getNextProject()) != null) {
+				if (tempProject.getID().equals(currentProject.getID())) {
+					currentProject = tempProject;
+					if(allProjects.findProjectByID(currentProject.getID()) == null)
+					{
+						allProjects.appendItemToList(currentProject);
+					}
+				}
+			}
+			allProjects.goToFrontOfList();
+			Project p;
+			while((p = allProjects.getNextProject()) != null)
+			{
+				System.out.println(p.getID());
+			}
+		}
 		return true;
 	}
 	

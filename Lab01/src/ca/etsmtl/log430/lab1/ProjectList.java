@@ -42,6 +42,16 @@ public class ProjectList extends List {
 	public void addProject(Project project) {
 		appendItemToList((Object) project);
 	}
+	
+	public void addProjectList(ProjectList projectList) {
+		projectList.goToFrontOfList();
+		Project pro;
+		while((pro = projectList.getNextProject()) != null)
+		{
+			appendItemToList((Object) pro);
+		}
+	}
+	
 
 	/**
 	 * @return The project pointed at the current position pointed to by the
