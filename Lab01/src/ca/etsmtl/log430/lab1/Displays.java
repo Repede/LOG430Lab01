@@ -290,22 +290,46 @@ public class Displays {
 		} // while
 
 	}
-	public void displayRoleAssignedToProjet(Project pr)
+	public void displayRoleAssignedToProjet(Project pr, ResourceList resourceList)
 	{
 		//Role
 		int[] countRolesBefore=new int[4];
 		int[] countRolesAfter=new int[4];
 		Resource resource;
-		
+		Project prj;
 		boolean done = false;
+		while (!done) {
+			resource = resourceList.getNextResource();
+			if (resource == null) 
+				done = true;
+			else 
+			{				
+				boolean donneInnerWhile=false;			
+				while(!donneInnerWhile)
+				{
+					prj=resource.getPreviouslyAssignedProjectList().getNextProject();
+					if (prj == null) 
+						donneInnerWhile = true;
+					else
+					{
+						if(prj.getID().equals(pr.getID()))
+							countRolesBefore=this.incrRoleProject(countRolesBefore, resource.getRole());
+					}		
+				}
+			} // if
+			
+		}
+		done = false;
 		while (!done) {
 			resource = pr.getResourcesAssigned().getNextResource();
 			if (resource == null) 
 				done = true;
 			else 
-			{
+			{				
 				countRolesAfter=this.incrRoleProject(countRolesAfter, resource.getRole());
+		
 			} // if
+			
 		} // while
 		System.out.println("Avant execution");
 		System.out.println("Analyse : "+countRolesBefore[0]);
