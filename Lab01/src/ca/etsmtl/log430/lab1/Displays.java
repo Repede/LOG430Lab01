@@ -189,24 +189,30 @@ public class Displays {
 
 		while (!done) {
 			project = resource.getPreviouslyAssignedProjectList().getNextProject();
-			
-			while ((tempProject = projectList.getNextProject()) != null) {
-				if (tempProject.getID().equals(project.getID())) {
-					project = tempProject;
+			if(project != null)
+			{
+				while ((tempProject = projectList.getNextProject()) != null) {
+					if (tempProject.getID().equals(project.getID())) {
+						project = tempProject;
+					}
 				}
+	
+				projectList.goToFrontOfList();
+	
+				if (project == null || project.getID().isEmpty()) {
+	
+					done = true;
+	
+				} else {
+					displayProject(project);
+					lineCheck(2);
+	
+				} // if
 			}
-
-			projectList.goToFrontOfList();
-
-			if (project == null || project.getID().isEmpty()) {
-
+			else
+			{
 				done = true;
-
-			} else {
-				displayProject(project);
-				lineCheck(2);
-
-			} // if
+			}
 
 		} // while
 
@@ -336,6 +342,13 @@ public class Displays {
 		System.out.println("Programmeur : "+countRolesAfter[2]);
 		System.out.println("Testeur : "+countRolesAfter[3]);
 	}
+	
+	public boolean isOverloaded(Project project, Resource resource)
+	{
+		//Be cool here
+		return true;
+	}
+	
 	private int[] incrRoleProject(int[] roles,String Role)
 	{
 		switch (Role) {

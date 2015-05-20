@@ -151,8 +151,11 @@ public class ResourceAssignment {
 					display.displayProjectList(projectList.getListOfProjects());
 					project = menu.pickProject(projectList.getListOfProjects());
 					if (project != null) {
-						project.assignResource(resource);
-						resource.assignProject(project);
+						if(!display.isOverloaded(project,resource))
+						{
+							project.assignResource(resource);
+							resource.assignProject(project);
+						}
 					} // if
 				} // if
 
