@@ -172,7 +172,7 @@ public class ResourceAssignment {
 				project = menu.pickProject(projectList.getListOfProjects());
 
 				if (project != null) {
-					display.displayRoleAssignedToProjet(project);
+					display.displayRoleAssignedToProjet(project,resourceList.getListOfResources());
 				} // if
 				break;
 			    
