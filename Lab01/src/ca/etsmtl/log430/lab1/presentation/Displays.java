@@ -1,12 +1,15 @@
-package ca.etsmtl.log430.lab1.view;
+package ca.etsmtl.log430.lab1.presentation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import ca.etsmtl.log430.lab1.controleur.ProjectList;
-import ca.etsmtl.log430.lab1.controleur.ResourceList;
-import ca.etsmtl.log430.lab1.model.Project;
-import ca.etsmtl.log430.lab1.model.Resource;
+import ca.etsmtl.log430.lab1.donnees.Project;
+import ca.etsmtl.log430.lab1.donnees.Resource;
+import ca.etsmtl.log430.lab1.gestion.ProjectList;
+import ca.etsmtl.log430.lab1.gestion.ResourceList;
 
 /**
  * This class displays various types of information on projects and resources
@@ -35,8 +38,9 @@ import ca.etsmtl.log430.lab1.model.Resource;
 
 public class Displays {
 
-	private int lineCount = 0;
+
 	private int maxLinesDisplayed = 18;
+	private int lineCount;
 
 	/**
 	 * Counts the number of lines that has been printed. Once a set number of
@@ -382,7 +386,7 @@ public class Displays {
 		}
 		return true;
 	}
-	public boolean isRessourceOverloaded(Resource res,ProjectList pr, Project preAssigned )
+	public boolean isRessourceOverloaded(Resource res,ProjectList pr, Project preAssigned ) throws ParseException
 	{
 	    //Get info from projetlist
 		List<Project> lstProj=new ArrayList<Project>();
@@ -396,7 +400,8 @@ public class Displays {
 				done = true;
 			else 
 			{
-				lstProj.add(tmpprj);
+				if(tmpprj!=null)
+					lstProj.add(tmpprj);
 			}
 		}
 		//Completer les informations des projets por la resources res
@@ -416,7 +421,7 @@ public class Displays {
 						p.setProjectName(tmpprj.getProjectName());
 						p.setStartDate(tmpprj.getStartDate());
 						p.setEndDate(tmpprj.getEndDate());
-						p.setPriority(tmpprj.getEndDate());
+						p.setPriority(tmpprj.getPriority());
 					}
 				}
 			}		
@@ -430,11 +435,11 @@ public class Displays {
 				done = true;
 			else 
 			{
-				lstProj.add(tmpprj);
+				if(tmpprj!=null)
+					lstProj.add(tmpprj);
 			}
 		}	
-		
-		return true;
+		return this.canAssignProject(lstProj, preAssigned);
 	}
 	private float getPercentageassigedWork(String str)
 	{
@@ -472,6 +477,39 @@ public class Displays {
 		}
 		return roles;
 	}
-	//private float calculateMax
+	private boolean canAssignProject(List<Project> lst,Project preAssigned) throws ParseException
+	{
+		float culmulWork=0;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		long calculProjPreAssignedDuree=0;
+		Date preAssignedStartDate=format.parse(preAssigned.getStartDate());
+		Date preAssignedEndDate=format.parse(preAssigned.getEndDate());
+		calculProjPreAssignedDuree=preAssignedEndDate.getTime()-preAssignedStartDate.getTime();
+		for(Project p: lst)
+		{
+			Date localStartDate=format.parse(p.getStartDate());
+			Date localEndDate=format.parse(p.getEndDate());
+			long calculProjLocalDuree=localEndDate.getTime()-localStartDate.getTime();
+			if(preAssignedStartDate.compareTo(localStartDate)+preAssignedEndDate.compareTo(localEndDate)==0)
+				return true;
+			if(calculProjPreAssignedDuree>calculProjLocalDuree)
+			{
+				if(localStartDate.after(preAssignedStartDate) && localStartDate.before(preAssignedEndDate) 
+					|| localEndDate.after(preAssignedStartDate) && localEndDate.before(preAssignedEndDate))
+				{
+					culmulWork+= this.getPercentageassigedWork(p.getPriority());
+				}
+			}
+			else
+			{		
+				if(preAssignedStartDate.after(localStartDate) && preAssignedStartDate.before(localEndDate) 
+					|| preAssignedEndDate.after(localStartDate) &&preAssignedEndDate.before(preAssignedEndDate))
+				{
+					culmulWork+= this.getPercentageassigedWork(p.getPriority());
+				}
+			}
+		}		
+		return culmulWork>1.0F;
+	}
 	
 } // Display

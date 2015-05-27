@@ -1,6 +1,6 @@
-package ca.etsmtl.log430.lab1.model;
+package ca.etsmtl.log430.lab1.donnees;
 
-import ca.etsmtl.log430.lab1.controleur.ResourceList;
+import ca.etsmtl.log430.lab1.gestion.ResourceList;
 
 /** This class defines the Project object for the system.
 * 

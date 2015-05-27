@@ -1,13 +1,14 @@
-package ca.etsmtl.log430.lab1.controleur;
+package ca.etsmtl.log430.lab1.gestion;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
-import ca.etsmtl.log430.lab1.model.Project;
-import ca.etsmtl.log430.lab1.model.ProjectReader;
-import ca.etsmtl.log430.lab1.model.Resource;
-import ca.etsmtl.log430.lab1.model.ResourceReader;
-import ca.etsmtl.log430.lab1.view.Displays;
-import ca.etsmtl.log430.lab1.view.Menus;
+import ca.etsmtl.log430.lab1.donnees.Project;
+import ca.etsmtl.log430.lab1.donnees.ProjectReader;
+import ca.etsmtl.log430.lab1.donnees.Resource;
+import ca.etsmtl.log430.lab1.donnees.ResourceReader;
+import ca.etsmtl.log430.lab1.presentation.Displays;
+import ca.etsmtl.log430.lab1.presentation.Menus;
 
 /**
  * Main class for assignment 1 for LOG430, Architecture logicielle.
@@ -64,7 +65,7 @@ import ca.etsmtl.log430.lab1.view.Menus;
 
 public class ResourceAssignment {
 
-	public static void main(String argv[]) {
+	public static void main(String argv[]) throws ParseException {
 
 		if (argv.length != 2) {
 			System.out.println("\n\nIncorrect number of input parameters -"
@@ -158,11 +159,13 @@ public class ResourceAssignment {
 					display.displayProjectList(projectList.getListOfProjects());
 					project = menu.pickProject(projectList.getListOfProjects());
 					if (project != null) {
-						if(!display.isOverloaded(project,resource, projectList.getListOfProjects()))
+						if(!display.isRessourceOverloaded(resource, projectList.getListOfProjects(), project))
 						{
 							project.assignResource(resource);
 							resource.assignProject(project);
 						}
+						else
+							System.out.println("La ressource est surchargée!");
 					} // if
 				} // if
 

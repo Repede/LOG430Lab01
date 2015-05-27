@@ -1,9 +1,9 @@
-package ca.etsmtl.log430.lab1.view;
+package ca.etsmtl.log430.lab1.presentation;
 
-import ca.etsmtl.log430.lab1.controleur.ProjectList;
-import ca.etsmtl.log430.lab1.controleur.ResourceList;
-import ca.etsmtl.log430.lab1.model.Project;
-import ca.etsmtl.log430.lab1.model.Resource;
+import ca.etsmtl.log430.lab1.donnees.Project;
+import ca.etsmtl.log430.lab1.donnees.Resource;
+import ca.etsmtl.log430.lab1.gestion.ProjectList;
+import ca.etsmtl.log430.lab1.gestion.ResourceList;
 
 /**
  * This class presents the user with menus, accepts their choice, ensures their

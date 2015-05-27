@@ -1,7 +1,7 @@
-package ca.etsmtl.log430.lab1.controleur;
+package ca.etsmtl.log430.lab1.gestion;
 
-import ca.etsmtl.log430.lab1.model.List;
-import ca.etsmtl.log430.lab1.model.Project;
+import ca.etsmtl.log430.lab1.donnees.List;
+import ca.etsmtl.log430.lab1.donnees.Project;
 
 /**
  * This class is used by various other classes that need to keep a list of
